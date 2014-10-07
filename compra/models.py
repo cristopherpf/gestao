@@ -8,6 +8,10 @@ class NaturezaOperacao(models.Model):
     descricao = models.CharField(max_length=100)
     descricao_reduzida = models.CharField(max_length=40)
     ativo = models.BooleanField(default=1)
+	
+    class Meta:
+        verbose_name = "Natureza de Operação"
+        verbose_name_plural = "Naturezas de Operação"
 
 class TipoMovimento(models.Model):
     descricao = models.CharField(max_length=40)
@@ -15,6 +19,10 @@ class TipoMovimento(models.Model):
     gera_contas_a_pagar = models.BooleanField(default=0)
     gera_estoque = models.BooleanField(default=0)
     tipo_documento = models.ForeignKey('financeiro.TipoDocumento', null=True)
+	
+    class Meta:
+        verbose_name = "Tipo de Movimento"
+        verbose_name_plural = "Tipos de Movimento"
 	
 class NotaFiscal(models.Model):
     numero_nota_fiscal = models.IntegerField()
@@ -28,6 +36,10 @@ class NotaFiscal(models.Model):
     valor_total_nota = models.DecimalField(max_digits=10, decimal_places=2)
     observacao = models.TextField(max_length=100, blank=True, null=True)
     chave_acesso_nfe = models.CharField(max_length=40, blank=True, null=True)
+	
+    class Meta:
+        verbose_name = "Nota Fiscal"
+        verbose_name_plural = "Notas Fiscais"
 	
 class ImpostosNotaFiscal(models.Model):
     nota_fiscal = models.OneToOneField('compra.NotaFiscal')
@@ -43,6 +55,10 @@ class ImpostosNotaFiscal(models.Model):
     valor_outras_despesas = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     valor_pis = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     valor_cofins = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+	
+    class Meta:
+        verbose_name = "Impostos de Nota Fiscal"
+        verbose_name_plural = "Impostos de Nota Fiscal"
 
 class ItemNotaFiscal(models.Model):
     nota_fiscal = models.ForeignKey('compra.NotaFiscal')
@@ -51,3 +67,7 @@ class ItemNotaFiscal(models.Model):
     valor_unitario = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     quantidade = models.DecimalField(max_digits=12, decimal_places=4, default=0)
     valor_total_item = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+	
+    class Meta:
+        verbose_name = "Item de Nota Fiscal"
+        verbose_name_plural = "Itens de Nota Fiscal"

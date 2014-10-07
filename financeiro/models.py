@@ -71,6 +71,10 @@ class ItemTituloReceber(models.Model):
     valor_saldo = models.DecimalField(max_digits=10, decimal_places=2)
     situacao = models.CharField(max_length=2, choices=SITUACAO_TITULO, default='AB')
 	
+    class Meta:
+        verbose_name = "Item de Título a Pagar"
+        verbose_name_plural = "Itens de Título a Pagar"
+	
     def get_titulo_receber_desc(self):
         return self.titulo_receber.descricao;
     get_titulo_receber_desc.short_description = 'Descrição'
